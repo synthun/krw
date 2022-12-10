@@ -5,7 +5,7 @@ shell wrapper i decided to make to practice shell
 ## installation
 
 ```
-# make mime
+$ make mime
 # make install
 ```
 
