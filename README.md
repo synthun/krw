@@ -13,10 +13,10 @@ shell wrapper i decided to make to practice shell
 
 most of these are probably already installed on your system
 
-`sh`
-`make`
-`curl`
-`unzip`
-`wine`
-`wine-32bit`
-`xdg-mime`
++ `sh`
++ `make`
++ `curl`
++ `unzip`
++ `wine`
++ `wine-32bit`
++ `xdg-mime`
