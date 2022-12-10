@@ -74,7 +74,7 @@ main() {
 		'')
 			log 'krw [d|f|i|k|l|r]...'
 			log 'dxvk    Install dxvk'
-			log 'fpsu    Install rbxfpsunlocker'
+			log 'fpsu    Install and run rbxfpsunlocker'
 			log 'install Install Roblox'
 			log 'kill    Kill wineprefix'
 			log 'launch  Launch Roblox'
