@@ -4,14 +4,16 @@ log() { printf '\033[1;95m%s %b%s\033[m %s\n' "${3:-->}" "\033[m${2:+\033[1;35m}
 die() { log "$1" "$2" ERROR ; exit "${3:-1}" ; }
 
 install() {
+	log install 'fetching install executable'
 	curl -L https://roblox.com/download/client -o /tmp/roblox.exe || \
-		die 'fetching failed'
+		die install 'fetching failed'
 	
-	wine /tmp/roblox.exe
-	wineserver -k
+	log install 'running install executable' ; wine /tmp/roblox.exe
+	log install 'killing wineserver' ; wineserver -k
 }
 
 launch() {
+	log launch 'launching'
 	[ ! -f "$exe" ] && install
 	wine "$exe" "$@"
 	fpsu
@@ -23,12 +25,16 @@ dxvk() {
 	ver=2.0
 	file=dxvk-$ver.tar.gz
 
-	curl -L https://github.com/doitsujin/dxvk/releases/download/v$ver/$file -o "$thirdparty"/"$file"
+	log dxvk 'retrieving dlls'
+	curl -L https://github.com/doitsujin/dxvk/releases/download/v$ver/$file -o "$thirdparty"/"$file" || \
+		die dxvk 'fetching failed'
+	log dxvk 'extracting dlls'
 	tar xvf "$thirdparty"/$file -C "$thirdparty"
 	
-	cp -f "$thirdparty"/dxvk-$ver/x64/*.dll "$WINEPREFIX/drive_c/windows/system32"
-	cp -f "$thirdparty"/dxvk-$ver/x32/*.dll "$WINEPREFIX/drive_c/windows/syswow64"
-	rm -rfv "$thirdparty"/"$file"
+	log dxvk 'copying dlls'
+	cp -vf "$thirdparty"/dxvk-$ver/x64/*.dll "$WINEPREFIX/drive_c/windows/system32"
+	cp -vf "$thirdparty"/dxvk-$ver/x32/*.dll "$WINEPREFIX/drive_c/windows/syswow64"
+	rm -rf "$thirdparty"/"$file" 
 }
 
 fpsu() {
@@ -38,10 +44,13 @@ fpsu() {
 	file=rbxfpsunlocker-x64.zip
 	
 	# TODO: switch from unzip to gzip
-	curl -L https://github.com/axstin/rbxfpsunlocker/releases/download/v$ver/$file -o "$thirdparty"/"$file"
-	unzip -o "$thirdparty"/"$file" -d "$thirdparty"
+	log fpsu 'fetching rbxfpsunlocker'
+	curl -L https://github.com/axstin/rbxfpsunlocker/releases/download/v$ver/$file -o "$thirdparty"/"$file" || \
+		die 'fetching failed'
+	log fpsu 'unzipping' ; unzip -o "$thirdparty"/"$file" -d "$thirdparty"
 	rm -rfv "$thirdparty"/"$file"
 	cd "$cachedir"
+	log fpsu 'launching rbxfpsunlocker'
 	wine "$thirdparty"/rbxfpsunlocker.exe "$@"
 }
 
@@ -68,7 +77,10 @@ main() {
 		d|dxvk) dxvk "$@" ;;
 		f|fpsu) fpsu "$@" ;;
 		i|install) install "$@" ;;
-		k|kill) wineserver -k "$@" ;;
+		k|kill) 
+			log 'killing wineserver'
+			wineserver -k "$@"
+		;;
 		l|launch) launch "$@" ;;
 		r|rm) rm -rfv $dir ;;
 		'')
