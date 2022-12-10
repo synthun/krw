@@ -5,8 +5,8 @@ shell wrapper i decided to make to practice shell
 ## installation
 
 ```
-$ make mime
 $ sudo make install
+$ make mime
 ```
 
 run `krw` for usage
@@ -25,4 +25,6 @@ most of these are probably already installed on your system
 
 ## other things
 
-massive credit to https://codeberg.org/wael/koshu i stole some code from this and also inspired me to make this
+https://codeberg.org/wael/koshu - inspired me to make krw in the first place, also stole some code from it
+
+https://github.com/dylanaraps/kiss - help page
