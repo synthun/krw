@@ -37,6 +37,7 @@ fpsu() {
 	ver=4.4.4
 	file=rbxfpsunlocker-x64.zip
 	
+	# TODO: switch from gzip to unzip
 	curl -L https://github.com/axstin/rbxfpsunlocker/releases/download/v$ver/$file -o "$thirdparty"/"$file"
 	unzip -o "$thirdparty"/"$file" -d "$thirdparty"
 	rm -rfv "$thirdparty"/"$file"
