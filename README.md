@@ -6,8 +6,10 @@ shell wrapper i decided to make to practice shell
 
 ```
 $ make mime
-# make install
+$ sudo make install
 ```
+
+run `krw` for usage
 
 ## dependencies
 
