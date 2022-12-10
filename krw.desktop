@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Roblox App
+Exec=krw l %u
+Categories=Game;
