@@ -25,7 +25,7 @@ dxvk() {
 	ver=2.0
 	file=dxvk-$ver.tar.gz
 
-	log dxvk 'retrieving dlls'
+	log dxvk 'fetching dlls'
 	curl -L https://github.com/doitsujin/dxvk/releases/download/v$ver/$file -o "$thirdparty"/"$file" || \
 		die dxvk 'fetching failed'
 	log dxvk 'extracting dlls'
