@@ -4,6 +4,9 @@ install:
 	mkdir -p /usr/bin
 	cp -f krw.sh /usr/bin/krw
 
+uninstall:
+	rm -rf /usr/bin/krw
+
 mime:
 	mkdir -p $(HOME)/.local/share/applications
 	cp -f krw.desktop $(HOME)/.local/share/applications
