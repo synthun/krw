@@ -13,8 +13,8 @@ install() {
 }
 
 launch() {
+	[ ! -f "$exe" ] && die launch 'roblox is not installed'
 	log launch 'launching'
-	[ ! -f "$exe" ] && install
 	wine "$exe" "$@"
 	fpsu
 }
