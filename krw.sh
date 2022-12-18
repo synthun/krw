@@ -63,7 +63,6 @@ main() {
     export DXVK_LOG_PATH=none
 	export DXVK_STATE_CACHE_PATH="$cachedir"
 
-	[ ! -d $dir ] && mkdir -p $dir
 	[ ! -d $WINEPREFIX ] && mkdir -p $WINEPREFIX
 
 	exe=$(find $WINEPREFIX -name RobloxPlayerLauncher.exe)
