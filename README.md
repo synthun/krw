@@ -11,6 +11,8 @@ $ make mime
 
 run `krw` for usage
 
+if `make mime` was ran, roblox should be launchable from the browser, but you can also run `krw l -app` to run the roblox app
+
 ## dependencies
 
 most of these are probably already installed on your system
